@@ -1,0 +1,294 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080812;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.game-container {
+    max-width: 900px;
+    margin: clamp(12px, 3vw, 30px) auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #00f7ff;
+    font-size: 45px;
+    text-shadow: 0 0 20px #00f7ff;
+}
+
+.subtitle {
+    color: #ff00ff;
+    letter-spacing: 6px;
+    margin: 10px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    color: #00ffff;
+    font-size: 18px;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    background: #101020;
+    border: 2px solid #00f7ff;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #00f7ff55;
+    cursor: crosshair;
+}
+
+.mobile-controls {
+    display: none;
+}
+
+button {
+    margin: 20px;
+    padding: 15px 45px;
+    background: #ff00cc;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff00cc;
+}
+
+button:hover {
+    background: #00cfff;
+    box-shadow: 0 0 25px #00cfff;
+}
+
+.help {
+    color: #aaa;
+    font-size: 13px;
+}
+
+#message {
+    color: #00ffff;
+    margin-top: 15px;
+}
+
+.mobile-help {
+    display: none;
+}
+
+@media (pointer: coarse), (max-width: 700px), (orientation: landscape) and (max-height: 500px) {
+    .game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: clamp(30px, 8vw, 42px);
+    }
+
+    .subtitle {
+        margin: 4px;
+        letter-spacing: 4px;
+    }
+
+    .stats {
+        width: 100%;
+        padding: 10px 4px;
+        font-size: 16px;
+    }
+
+    #startBtn {
+        order: 1;
+        margin: 8px 0 12px;
+        padding: 12px 32px;
+        font-size: 18px;
+    }
+
+    canvas {
+        order: 2;
+        max-height: 60vh;
+    }
+
+    .mobile-controls {
+        order: 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 420px;
+        margin: 12px auto;
+        padding: 0 8px;
+        touch-action: none;
+        user-select: none;
+    }
+
+    .direction-pad {
+        display: grid;
+        grid-template-columns: repeat(3, 58px);
+        grid-template-rows: repeat(2, 58px);
+        gap: 6px;
+    }
+
+    .direction-button,
+    #fireButton {
+        margin: 0;
+        padding: 0;
+        border: 1px solid #00f7ff;
+        background: #101b35;
+        color: #fff;
+        box-shadow: 0 0 12px #00f7ff55;
+        touch-action: none;
+        user-select: none;
+    }
+
+    .direction-button {
+        border-radius: 12px;
+        font-size: 22px;
+    }
+
+    .direction-button:active,
+    #fireButton:active {
+        background: #007f9e;
+    }
+
+    .up {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .left {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .down {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .right {
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    #fireButton {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #a00072;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .help {
+        order: 4;
+        max-width: 100%;
+        line-height: 1.5;
+    }
+
+    #message {
+        order: 5;
+    }
+
+    .mobile-help {
+        display: inline;
+    }
+}
+
+@media (max-width: 380px) {
+    .direction-pad {
+        grid-template-columns: repeat(3, 52px);
+        grid-template-rows: repeat(2, 52px);
+    }
+
+    #fireButton {
+        width: 88px;
+        height: 88px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .game-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 250px;
+        grid-template-areas:
+            "heading heading"
+            "stats stats"
+            "start start"
+            "game controls"
+            "message message";
+        column-gap: 12px;
+        row-gap: 4px;
+        padding: 8px 12px;
+    }
+
+    h1 {
+        grid-area: heading;
+        font-size: 28px;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .stats {
+        grid-area: stats;
+        padding: 5px 4px;
+    }
+
+    #startBtn {
+        grid-area: start;
+        margin: 4px auto 8px;
+    }
+
+    canvas {
+        grid-area: game;
+        justify-self: end;
+        width: min(100%, 85.333vh);
+        max-height: 48vh;
+    }
+
+    .mobile-controls {
+        grid-area: controls;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .direction-pad {
+        grid-template-columns: repeat(3, 48px);
+        grid-template-rows: repeat(2, 48px);
+        gap: 4px;
+    }
+
+    #fireButton {
+        width: 80px;
+        height: 80px;
+    }
+
+    .help {
+        display: none;
+    }
+
+    #message {
+        grid-area: message;
+        margin-top: 4px;
+    }
+}

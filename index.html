@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>AK GAMING</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>⚡ AK GAMING</h1>
+        <p class="subtitle">BATTLE ARENA</p>
+
+        <div class="stats">
+            <span>❤️ Health: <b id="health">100</b></span>
+            <span>🏆 Score: <b id="score">0</b></span>
+        </div>
+
+        <canvas id="game" width="800" height="450"></canvas>
+
+        <div class="mobile-controls" aria-label="Mobile game controls">
+            <div class="direction-pad" aria-label="Movement controls">
+                <button class="direction-button up" type="button" data-key="arrowup" aria-label="Move up">▲</button>
+                <button class="direction-button left" type="button" data-key="arrowleft" aria-label="Move left">◀</button>
+                <button class="direction-button down" type="button" data-key="arrowdown" aria-label="Move down">▼</button>
+                <button class="direction-button right" type="button" data-key="arrowright" aria-label="Move right">▶</button>
+            </div>
+            <button id="fireButton" type="button" aria-label="Hold to fire at the nearest enemy">FIRE</button>
+        </div>
+
+        <button id="startBtn" onclick="startGame()">
+            START GAME
+        </button>
+
+        <p class="help">
+            Move: WASD / Arrow Keys | Aim: Mouse | Shoot: Click
+            <span class="mobile-help"> | Mobile: D-pad + hold FIRE (auto-aim)</span>
+        </p>
+        <p id="message">Ready to Battle?</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
